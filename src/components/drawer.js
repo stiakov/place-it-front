@@ -5,11 +5,7 @@ import { css } from '@emotion/core';
 import { Link } from 'gatsby';
 import { toggleDrawer as toggleDrawerAction } from '../state/app';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faHome,
-  faTicketAlt,
-  faCalendarAlt,
-} from '@fortawesome/free-solid-svg-icons';
+import { faTicketAlt, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Paper = styled.aside`
   position: fixed;
