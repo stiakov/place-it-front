@@ -9,7 +9,6 @@ const IndexPage = ({ movies }) => {
   useEffect(() => {
     dispatch(getAllMovies());
   }, [dispatch]);
-  console.log('movies', movies);
 
   return (
     <Layout>

@@ -12,7 +12,6 @@ const getAllMoviesTask = response => ({
 const getAllMovies = () => dispatch =>
   axios.get(`${BASE_URL}/movies`).then(
     response => {
-      console.log(response)
       dispatch(getAllMoviesTask(response));
     },
     error => errorLogger(error, dispatch),
