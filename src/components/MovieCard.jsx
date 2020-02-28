@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
 
@@ -35,13 +34,14 @@ const cardStyle = css`
   }
 `;
 
-const posterStyle = posterUrl => css`
+const posterStyle = css`
   min-height: 100%;
   border-radius: 1.5%;
   margin-bottom: 0;
 `;
 
-const buttonStyle = css`
+export const buttonStyle = css`
+  font-family: 'Montserrat', 'sans-serif';
   font-size: 0.8rem;
   padding-left: 22px;
   padding-right: 22px;
@@ -69,12 +69,16 @@ const buttonStyle = css`
 const MovieCard = ({ title, plot, poster }) => {
   return (
     <div css={cardStyle}>
-      <img src={poster} alt={title} css={posterStyle(poster)}></img>
+      <img src={poster} alt={title} css={posterStyle}></img>
       <button css={buttonStyle}>Reservar</button>
     </div>
   );
 };
 
-MovieCard.propTypes = {};
+MovieCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  plot: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
+};
 
 export default MovieCard;
