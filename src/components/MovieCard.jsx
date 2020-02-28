@@ -40,6 +40,7 @@ const posterStyle = posterUrl => css`
   border-radius: 1.5%;
   margin-bottom: 0;
 `;
+
 const buttonStyle = css`
   font-size: 0.8rem;
   padding-left: 22px;

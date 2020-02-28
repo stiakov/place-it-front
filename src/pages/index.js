@@ -27,7 +27,7 @@ const IndexPage = ({ movies }) => {
         title="Películas"
         keywords={['cinema', 'booking', 'films', 'reserva', 'cine', 'films']}
       />
-      <h1>Películas</h1>
+      <h3>Películas</h3>
       <MoviesContainer>
         {movies.length > 0
           ? movies.map(item => (
