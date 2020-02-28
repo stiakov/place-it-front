@@ -25,7 +25,7 @@ const Navbar = styled.header`
   top: 0;
   left: 0;
   padding-left: ${p => p.theme.size(0.5)};
-  background: ${p => p.theme.palette.primary.main};
+  background: #007CFD;
 `;
 
 const Top = styled.div`
