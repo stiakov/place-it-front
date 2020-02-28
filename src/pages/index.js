@@ -7,6 +7,7 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { getAllMovies } from '../state/movieActions';
 import MovieCard from '../components/MovieCard';
+import { SectionHeader } from '../components/sectionHeader';
 
 const MoviesContainer = styled.section`
   display: flex;
@@ -14,6 +15,33 @@ const MoviesContainer = styled.section`
   justify-content: space-around;
   width: 100%;
 `;
+
+const addButtonStyles = css`
+  font-family: 'Montserrat', 'sans-serif';
+  font-size: 0.8rem;
+  padding-left: 22px;
+  padding-right: 22px;
+  display: flex;
+  text-align: center;
+  vertical-align: bottom;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(to top, #7892c2 5%, #0061c9 100%);
+  border-radius: 1rem;
+  z-index: 20;
+
+  &:hover {
+    background-color: #0061c9;
+    background: #0061c9;
+  }
+  &:active {
+    bottom: -39.8%;
+  }
+`;
+
+const AddMovie = () => (
+  <button css={addButtonStyles}>┼ &nbsp; Nueva Película</button>
+);
 
 const IndexPage = ({ movies }) => {
   const dispatch = useDispatch();
@@ -27,7 +55,7 @@ const IndexPage = ({ movies }) => {
         title="Películas"
         keywords={['cinema', 'booking', 'films', 'reserva', 'cine', 'films']}
       />
-      <h3>Películas</h3>
+      <SectionHeader title="Películas" extra={<AddMovie />} />
       <MoviesContainer>
         {movies.length > 0
           ? movies.map(item => (
@@ -46,4 +74,5 @@ const IndexPage = ({ movies }) => {
 const mapStateToProps = state => ({
   movies: state.movies.all,
 });
+
 export default connect(mapStateToProps, null)(IndexPage);
