@@ -12,6 +12,11 @@ const palette = {
     main: '#242424',
     dark: '#181818',
   },
+  nav: {
+    head: '#0061C9',
+    body: '#007CFD',
+    hover: '#0061C9',
+  },
 };
 
 const baseSize = 16;

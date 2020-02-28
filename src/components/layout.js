@@ -55,14 +55,7 @@ const Layout = ({ children, isDrawerOpen, toggleDrawer }) => (
     render={data => (
       <ThemeProvider theme={theme}>
         <Container>
-          <Content isDrawerOpen={isDrawerOpen}>
-            {children}
-            <footer>
-              © {new Date().getFullYear()}, Built with
-              {` `}
-              <a href="https://www.gatsbyjs.org">Gatsby</a>
-            </footer>
-          </Content>
+          <Content isDrawerOpen={isDrawerOpen}>{children}</Content>
         </Container>
         <Overlay
           isDrawerOpen={isDrawerOpen}
