@@ -8,6 +8,8 @@ import SEO from '../components/seo';
 import { getAllMovies } from '../state/movieActions';
 import MovieCard from '../components/MovieCard';
 import { SectionHeader } from '../components/sectionHeader';
+import Modalizer from '../components/Modalizer';
+import Loading from '../components/Loading';
 
 const MoviesContainer = styled.section`
   display: flex;
@@ -28,7 +30,7 @@ const addButtonStyles = css`
   color: white;
   background: linear-gradient(to top, #7892c2 5%, #007cfd 100%);
   border-radius: 1rem;
-  z-index: 20;
+  z-index: 2;
 
   &:hover {
     background-color: #007cfd;
@@ -57,15 +59,17 @@ const IndexPage = ({ movies }) => {
       />
       <SectionHeader title="Películas" extra={<AddMovie />} />
       <MoviesContainer>
-        {movies.length > 0
-          ? movies.map(item => (
-              <MovieCard
-                title={item.title}
-                plot={item.plot}
-                poster={item.poster}
-              />
-            ))
-          : 'loading'}
+        {movies.length > 0 ? (
+          movies.map(item => (
+            <MovieCard
+              title={item.title}
+              plot={item.plot}
+              poster={item.poster}
+            />
+          ))
+        ) : (
+          <Loading />
+        )}
       </MoviesContainer>
     </Layout>
   );
