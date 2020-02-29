@@ -11,6 +11,7 @@ import rootReducer from '.';
 const initState = {
   movies: {
     all: [],
+    showModalNew: false,
   },
 };
 
