@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `PlaceIt`,
-    description: `Daily Movies, Immediate bookings.`,
+    title: `PlaceIt Cinema`,
+    description: `Daily Movies, Immediate bookings. Intimal Cinema`,
     author: `Santiago Torres G - @stiakov`,
   },
   plugins: [
@@ -24,7 +24,6 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/favicon.ico`, // This path is relative to the root of the site.
       },
     },
     'gatsby-plugin-emotion',
