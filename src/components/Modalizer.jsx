@@ -7,16 +7,41 @@ const FullScreenModal = styled.div`
   top: 0;
   left: 0;
   min-width: 100vw;
-  min-height: calc(100vh - ${p => p.theme.zIndex.header});
-  background-color: blue;
+  min-height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(2px);
   z-index: 3;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
 `;
 
-const Modalizer = props => {
+const ModalContainer = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: calc(50% - 10%);
+  top: 30%;
+  background-color: white;
+  padding: 2rem;
+  z-index: 5;
+`;
+
+const Modalizer = ({ children }) => {
   return (
-    <FullScreenModal isOpen="ok" contentLabel="Minimal Modal Example">
-      <button onClick="ok">Close Modal</button>
-    </FullScreenModal>
+    <>
+      <FullScreenModal
+        isOpen="ok"
+        contentLabel="Minimal Modal Example"
+      ></FullScreenModal>
+      <ModalContainer>
+        {children}
+        <button onClick="ok">Close Modal</button>
+      </ModalContainer>
+    </>
   );
 };
 
