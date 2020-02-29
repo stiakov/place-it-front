@@ -14,6 +14,7 @@
     "@fortawesome/react-fontawesome": "^0.1.8",
     "axios": "^0.19.2",
     "emotion-theming": "^10.0.7",
+    "form-schema-validation": "^1.17.3",
     "gatsby": "^2.1.4",
     "gatsby-image": "^2.0.29",
     "gatsby-plugin-emotion": "^4.0.3",
