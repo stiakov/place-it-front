@@ -37,10 +37,7 @@ const Modalizer = ({ children }) => {
         isOpen="ok"
         contentLabel="Minimal Modal Example"
       ></FullScreenModal>
-      <ModalContainer>
-        {children}
-        <button onClick="ok">Close Modal</button>
-      </ModalContainer>
+      <ModalContainer>{children}</ModalContainer>
     </>
   );
 };
