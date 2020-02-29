@@ -26,13 +26,13 @@ const addButtonStyles = css`
   vertical-align: bottom;
   cursor: pointer;
   color: white;
-  background: linear-gradient(to top, #7892c2 5%, #0061c9 100%);
+  background: linear-gradient(to top, #7892c2 5%, #007cfd 100%);
   border-radius: 1rem;
   z-index: 20;
 
   &:hover {
-    background-color: #0061c9;
-    background: #0061c9;
+    background-color: #007cfd;
+    background: #007cfd;
   }
   &:active {
     bottom: -39.8%;
