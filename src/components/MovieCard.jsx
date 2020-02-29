@@ -56,7 +56,7 @@ export const buttonStyle = css`
   left: -65%;
   bottom: -40%;
   border-radius: 1rem;
-  z-index: 20;
+  z-index: 2;
   &:hover {
     background-color: #007cfd;
     background: #007cfd;
