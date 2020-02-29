@@ -20,7 +20,6 @@ const MoviesContainer = styled.section`
 `;
 
 const addButtonStyles = css`
-  font-family: 'Montserrat', 'sans-serif';
   font-size: 0.8rem;
   padding-left: 22px;
   padding-right: 22px;
@@ -51,17 +50,10 @@ const IndexPage = ({ movies, showModal }) => {
   const AddMovie = () => {
     const handleClick = () => {
       dispatch(setShowNewMovieModal(true));
-      return null;
     };
 
     return (
-      <button
-        type="submit"
-        onClick={() => {
-          handleClick();
-        }}
-        css={addButtonStyles}
-      >
+      <button type="submit" onClick={handleClick} css={addButtonStyles}>
         ┼ &nbsp; Nueva Película
       </button>
     );

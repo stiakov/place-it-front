@@ -41,7 +41,6 @@ const posterStyle = css`
 `;
 
 export const buttonStyle = css`
-  font-family: 'Montserrat', 'sans-serif';
   font-size: 0.8rem;
   padding-left: 22px;
   padding-right: 22px;

@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-
+* {
+  font-family: 'Montserrat', sans-serif !important;
+}
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
 body {
-  font-family: 'Montserrat', sans-serif !important;
   margin: 0;
 }
 article,
@@ -64,9 +65,6 @@ h1 {
   font-size: 2em;
   margin: 0.67em 0;
 }
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', sans-serif !important;
-} 
 mark {
   background-color: #ff0;
   color: #000;
