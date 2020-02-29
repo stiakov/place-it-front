@@ -5,11 +5,12 @@ import { css } from '@emotion/core';
 import { Link } from 'gatsby';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-import { getAllMovies } from '../state/movieActions';
+import { getAllMovies, setShowNewMovieModal } from '../state/movieActions';
 import MovieCard from '../components/MovieCard';
 import { SectionHeader } from '../components/sectionHeader';
 import Modalizer from '../components/Modalizer';
 import Loading from '../components/Loading';
+import NewMovieForm from '../components/NewMovieForm';
 
 const MoviesContainer = styled.section`
   display: flex;
@@ -41,15 +42,36 @@ const addButtonStyles = css`
   }
 `;
 
-const AddMovie = () => (
-  <button css={addButtonStyles}>┼ &nbsp; Nueva Película</button>
-);
-
-const IndexPage = ({ movies }) => {
+const IndexPage = ({ movies, showModal }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllMovies());
   }, [dispatch]);
+
+  const AddMovie = () => {
+    const handleClick = () => {
+      dispatch(setShowNewMovieModal(true));
+      return null;
+    };
+
+    return (
+      <button
+        type="submit"
+        onClick={() => {
+          handleClick();
+        }}
+        css={addButtonStyles}
+      >
+        ┼ &nbsp; Nueva Película
+      </button>
+    );
+  };
+
+  const NewMovieModal = () => (
+    <Modalizer>
+      <NewMovieForm />
+    </Modalizer>
+  );
 
   return (
     <Layout>
@@ -58,10 +80,12 @@ const IndexPage = ({ movies }) => {
         keywords={['cinema', 'booking', 'films', 'reserva', 'cine', 'films']}
       />
       <SectionHeader title="Películas" extra={<AddMovie />} />
+      {showModal ? <NewMovieModal /> : null}
       <MoviesContainer>
         {movies.length > 0 ? (
           movies.map(item => (
             <MovieCard
+              key={item.title}
               title={item.title}
               plot={item.plot}
               poster={item.poster}
@@ -77,6 +101,7 @@ const IndexPage = ({ movies }) => {
 
 const mapStateToProps = state => ({
   movies: state.movies.all,
+  showModal: state.movies.showModalNew,
 });
 
 export default connect(mapStateToProps, null)(IndexPage);
