@@ -11,7 +11,6 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
-  font-family: 'Montserrat', 'sans-serif';
   font-size: 1.5rem;
 `;
 

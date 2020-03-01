@@ -41,7 +41,6 @@ const posterStyle = css`
 `;
 
 export const buttonStyle = css`
-  font-family: 'Montserrat', 'sans-serif';
   font-size: 0.8rem;
   padding-left: 22px;
   padding-right: 22px;
@@ -56,7 +55,7 @@ export const buttonStyle = css`
   left: -65%;
   bottom: -40%;
   border-radius: 1rem;
-  z-index: 20;
+  z-index: 2;
   &:hover {
     background-color: #007cfd;
     background: #007cfd;

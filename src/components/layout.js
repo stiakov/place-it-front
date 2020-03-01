@@ -5,6 +5,8 @@ import styled from '@emotion/styled';
 import { connect } from 'react-redux';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../style/theme';
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
 import { toggleDrawer as toggleDrawerAction } from '../state/app';
 
 import Header from './header';
