@@ -12,7 +12,10 @@ const initState = {
   movies: {
     all: [],
     showModalNew: false,
-    filter: 'current',
+  },
+  reservations: {
+    all: [],
+    showModalNew: false,
   },
 };
 
