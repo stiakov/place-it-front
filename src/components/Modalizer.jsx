@@ -7,37 +7,33 @@ const FullScreenModal = styled.div`
   top: 0;
   left: 0;
   min-width: 100vw;
-  min-height: ${document.getElementById('___gatsby').clientHeight}px;
+  min-height: 400vh;
   background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(2px);
   z-index: 3;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  justify-content: center;
+  justify-content: first baseline;
 `;
 
 const ModalContainer = styled.div`
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: center;
   position: absolute;
-  left: calc(50% - 10%);
-  top: 30%;
   background-color: white;
   padding: 2rem;
   z-index: 5;
+  top: 64px;
 `;
-
 const Modalizer = ({ children }) => {
   return (
     <>
-      <FullScreenModal
-        isOpen="ok"
-        contentLabel="Minimal Modal Example"
-      ></FullScreenModal>
-      <ModalContainer>{children}</ModalContainer>
+      <FullScreenModal isOpen="ok" contentLabel="Minimal Modal Example">
+        <ModalContainer>{children}</ModalContainer>
+      </FullScreenModal>
     </>
   );
 };
