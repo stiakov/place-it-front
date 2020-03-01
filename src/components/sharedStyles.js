@@ -22,6 +22,30 @@ const addButtonStyles = css`
   }
 `;
 
+const filterButtonStyles = css`
+  font-size: 0.8rem;
+  padding-left: 22px;
+  height: 26px;
+  padding-right: 22px;
+  display: flex;
+  text-align: center;
+  vertical-align: bottom;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(to top, #7892c2 5%, #007cfd 100%);
+  border-radius: 1rem;
+  z-index: 2;
+  line-height: initial !important;
+
+  &:hover {
+    background-color: #007cfd;
+    background: #007cfd;
+  }
+  &:active {
+    bottom: -39.8%;
+  }
+`;
+
 const cancelButtonStyles = css`
   font-size: 0.8rem;
   padding-left: 22px;
@@ -95,4 +119,4 @@ const blockStyles = css`
   margin: 1.5rem 0;
 `;
 
-export { addButtonStyles, cancelButtonStyles, blockStyles };
+export { addButtonStyles, cancelButtonStyles, blockStyles, filterButtonStyles };
