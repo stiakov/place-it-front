@@ -28,7 +28,7 @@ const NewMovieForm = () => {
   return (
     <Form
       onSubmit={values => submitCreation({ ...values, dates })}
-      render={({ handleSubmit, form, submitting, pristine, values }) => (
+      render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <Field name="title" validate={required}>
             {({ input, meta }) => (
