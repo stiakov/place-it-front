@@ -53,7 +53,8 @@ const IndexPage = ({ movies, showModal }) => {
       <FilterByDateComponent></FilterByDateComponent>
       <MoviesContainer>
         {movies.length > 0 ? (
-          movies.length > 0 && movies[0].title !== 'No hay elementos para mostrar' ? (
+          movies.length > 0 &&
+          movies[0].title !== 'No hay elementos para mostrar' ? (
             movies.map(item => (
               <MovieCard
                 key={item.title}
@@ -64,9 +65,9 @@ const IndexPage = ({ movies, showModal }) => {
             ))
           ) : (
             <h1>No hay elementos para mostrar</h1>
-            )
-            ) : (
-              <Loading />
+          )
+        ) : (
+          <Loading />
         )}
       </MoviesContainer>
       {showModal ? <NewMovieModal /> : null}
