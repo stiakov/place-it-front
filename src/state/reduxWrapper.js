@@ -12,6 +12,7 @@ const initState = {
   movies: {
     all: [],
     showModalNew: false,
+    filter: 'current',
   },
 };
 

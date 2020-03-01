@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { getAllMovies, setShowNewMovieModal } from '../state/movieActions';
@@ -10,7 +9,8 @@ import { SectionHeader } from '../components/sectionHeader';
 import Modalizer from '../components/Modalizer';
 import Loading from '../components/Loading';
 import NewMovieForm from '../components/NewMovieForm';
-import { addButtonStyles, blockStyles } from '../components/sharedStyles';
+import { addButtonStyles } from '../components/sharedStyles';
+import FilterByDateComponent from '../components/FilterByDate';
 
 const MoviesContainer = styled.section`
   display: flex;
@@ -50,18 +50,23 @@ const IndexPage = ({ movies, showModal }) => {
         keywords={['cinema', 'booking', 'films', 'reserva', 'cine', 'films']}
       />
       <SectionHeader title="Películas" extra={<AddMovie />} />
+      <FilterByDateComponent></FilterByDateComponent>
       <MoviesContainer>
         {movies.length > 0 ? (
-          movies.map(item => (
-            <MovieCard
-              key={item.title}
-              title={item.title}
-              plot={item.plot}
-              poster={item.poster}
-            />
-          ))
-        ) : (
-          <Loading />
+          movies.length > 0 && movies[0].title !== 'No hay elementos para mostrar' ? (
+            movies.map(item => (
+              <MovieCard
+                key={item.title}
+                title={item.title}
+                plot={item.plot}
+                poster={item.poster}
+              />
+            ))
+          ) : (
+            <h1>No hay elementos para mostrar</h1>
+            )
+            ) : (
+              <Loading />
         )}
       </MoviesContainer>
       {showModal ? <NewMovieModal /> : null}
