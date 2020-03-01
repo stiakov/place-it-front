@@ -38,6 +38,8 @@ const Modalizer = ({ children }) => {
   );
 };
 
-Modalizer.propTypes = {};
+Modalizer.propTypes = {
+  children: PropTypes.string.isRequired,
+};
 
 export default Modalizer;

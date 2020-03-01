@@ -30,6 +30,7 @@ const NewMovieForm = () => {
       onSubmit={values => submitCreation({ ...values, dates })}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
+          <h3>Nueva película</h3>
           <Field name="title" validate={required}>
             {({ input, meta }) => (
               <div>
