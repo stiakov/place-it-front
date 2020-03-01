@@ -4,13 +4,13 @@ import styled from '@emotion/styled';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { getAllMovies, setShowNewMovieModal } from '../state/movieActions';
-import MovieCard from '../components/MovieCard';
+import MovieCard from '../components/indexMovies/MovieCard';
 import { SectionHeader } from '../components/sectionHeader';
 import Modalizer from '../components/Modalizer';
 import Loading from '../components/Loading';
-import NewMovieForm from '../components/NewMovieForm';
+import NewMovieForm from '../components/indexMovies/NewMovieForm';
 import { addButtonStyles } from '../components/sharedStyles';
-import FilterByDateComponent from '../components/FilterByDate';
+import FilterByDateComponent from '../components/indexMovies/FilterByDate';
 
 const MoviesContainer = styled.section`
   display: flex;

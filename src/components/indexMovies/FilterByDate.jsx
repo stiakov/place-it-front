@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { css } from '@emotion/core';
-import { filterByDate, getAllMovies } from '../state/movieActions';
-import { filterButtonStyles } from './sharedStyles';
+import { filterByDate, getAllMovies } from '../../state/movieActions';
+import { filterButtonStyles } from '../sharedStyles';
 
 const FilterByDateComponent = ({ filter }) => {
   const dispatch = useDispatch();

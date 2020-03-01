@@ -3,12 +3,12 @@ import { useDispatch } from 'react-redux';
 import { css } from '@emotion/core';
 import { Form, Field } from 'react-final-form';
 import { DateRange } from 'react-date-range';
-import { createMovie, setShowNewMovieModal } from '../state/movieActions';
+import { createMovie, setShowNewMovieModal } from '../../state/movieActions';
 import {
   addButtonStyles,
   cancelButtonStyles,
   blockStyles,
-} from './sharedStyles';
+} from '../sharedStyles';
 
 const NewMovieForm = () => {
   const dispatch = useDispatch();
