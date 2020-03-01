@@ -57,6 +57,7 @@ const Header = ({ isDrawerOpen, toggleDrawer, siteTitle }) => (
         isDrawerOpen={isDrawerOpen}
         href="#"
         onClick={() => toggleDrawer(!isDrawerOpen)}
+        id="header-nav"
       >
         <Hamburger />
       </MenuIcon>

@@ -642,7 +642,12 @@ input:focus {
   0 0 0 3px rgba(0, 126, 255, 0.1);
   outline: none;
 }
-
+label[for="form.Confirmar"] + div {
+  font-weight: bold;
+  font-size: .8rem;
+  color: red;
+  text-align: right;
+}
 input + div {
   font-weight: bold;
   font-size: .8rem;
@@ -664,5 +669,10 @@ label {
 .input-feedback {
   color: red;
   margin-top: .25rem;
+}
+
+input[type="checkbox"] {
+  width: 40px !important;
+  height: 20px !important;
 }
 
