@@ -7,7 +7,7 @@ const FullScreenModal = styled.div`
   top: 0;
   left: 0;
   min-width: 100vw;
-  min-height: 100%;
+  min-height: ${document.getElementById('___gatsby').clientHeight}px;
   background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(2px);
   z-index: 3;

@@ -11,7 +11,7 @@ const movieReducer = (state = [], { type, payload }) => {
     case SHOW_NEW_MOVIE_MODAL:
       return { ...state, showModalNew: payload };
     case CREATE_MOVIE:
-      return { ...state, all: [payload, ...state.all] };
+      return state;
     default:
       return state;
   }

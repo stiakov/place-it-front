@@ -16,9 +16,8 @@ const getAllMoviesTask = response => ({
   payload: response.data,
 });
 
-const createMovieTask = data => ({
+const createMovieTask = () => ({
   type: CREATE_MOVIE,
-  payload: data,
 });
 
 const setShowNewMovieModal = value => dispatch => {
@@ -33,6 +32,7 @@ const getAllMovies = () => dispatch =>
 const createMovie = data => dispatch => {
   axios.post(`${BASE_URL}/movies`, data).then(response => {
     dispatch(createMovieTask(response));
+    dispatch(getAllMovies());
     dispatch(setShowModalTask(false));
   }, console.error);
 };
