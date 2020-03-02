@@ -1,6 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
+import Modalizer from '../Modalizer';
+import NewReservationForm from './NewReservationForm';
+import { setShowNewReservationModal } from '../../state/reservationActions';
 
 const cardStyle = css`
   display: flex;
@@ -40,7 +44,7 @@ const posterStyle = css`
   margin-bottom: 0;
 `;
 
-export const buttonStyle = css`
+const buttonStyle = css`
   font-size: 0.8rem;
   padding-left: 22px;
   padding-right: 22px;
@@ -65,12 +69,28 @@ export const buttonStyle = css`
   }
 `;
 
-const MovieCard = ({ title, plot, poster }) => {
+const MovieCard = ({ title, plot, poster, showModal }) => {
+  const handleClick = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch(setShowNewReservationModal(true));
+  };
+
+  const NewReservationModal = () => (
+    <Modalizer>
+      <NewReservationForm movie={{ title, plot, poster }} />
+    </Modalizer>
+  );
   return (
-    <div css={cardStyle}>
-      <img src={poster} alt={title} css={posterStyle}></img>
-      <button css={buttonStyle}>Reservar</button>
-    </div>
+    <>
+      <div css={cardStyle}>
+        <img src={poster} alt={title} css={posterStyle}></img>
+        <button css={buttonStyle} onClick={e => handleClick(e)}>
+          Reservar
+        </button>
+      </div>
+      {showModal ? <NewReservationModal /> : null}
+    </>
   );
 };
 
@@ -78,6 +98,11 @@ MovieCard.propTypes = {
   title: PropTypes.string.isRequired,
   plot: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
+  showModal: PropTypes.bool.isRequired,
 };
 
-export default MovieCard;
+const mapStateToProps = state => ({
+  showModal: state.reservations.showModalNew,
+});
+
+export default connect(mapStateToProps, null)(MovieCard);

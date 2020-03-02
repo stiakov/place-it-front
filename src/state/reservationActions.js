@@ -44,7 +44,7 @@ const createReservation = data => dispatch => {
   }, console.error);
 };
 
-const setShowNewMovieModal = value => dispatch => {
+const setShowNewReservationModal = value => dispatch => {
   dispatch(setShowModalTask(value));
 };
 
@@ -56,5 +56,5 @@ export {
   getAllReservations,
   filterByIdNumber,
   createReservation,
-  setShowNewMovieModal,
+  setShowNewReservationModal,
 };

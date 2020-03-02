@@ -1,66 +1,98 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { css } from '@emotion/core';
 import { Form, Field } from 'react-final-form';
-import { DateRange } from 'react-date-range';
-import { createMovie, setShowNewMovieModal } from '../../state/movieActions';
+import {
+  createReservation,
+  setShowNewReservationModal,
+} from '../../state/reservationActions';
 import {
   addButtonStyles,
   cancelButtonStyles,
   blockStyles,
 } from '../sharedStyles';
 
-const NewMovieForm = () => {
+const movieTemplate = {
+  title: 'ohh no',
+  plot: 'ohh no',
+  poster: 'ohh no',
+};
+
+const NewReservationForm = (movie = movieTemplate) => {
   const dispatch = useDispatch();
+  console.log('El componente se ha lanzado ->', movie);
 
-  const [dates, setDates] = useState([
-    {
-      startDate: new Date(),
-      endDate: null,
-      key: 'selection',
-    },
-  ]);
+  const submitCreation = data => dispatch(createReservation(data));
+  const cancelCreation = () => dispatch(setShowNewReservationModal(false));
 
-  const submitCreation = data => dispatch(createMovie(data));
-  const cancelCreation = () => dispatch(setShowNewMovieModal(false));
+  const composeValidators = (...validators) => value =>
+    validators.reduce(
+      (error, validator) => error || validator(value),
+      undefined,
+    );
+
   const required = value => (value ? undefined : 'Requerido');
+  const emailValidator = str => {
+    const pattern = RegExp(`/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/`);
+    return pattern.test(str) || 'Correo electrónico incorrecto';
+  };
 
   return (
     <Form
       onSubmit={values => submitCreation({ ...values, dates })}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-          <h3>Nueva película</h3>
-          <Field name="title" validate={required}>
+          <h3>Reservar</h3>
+          <Field name="name" validate={required}>
             {({ input, meta }) => (
               <div>
-                <label>Título</label>
-                <input {...input} type="text" placeholder="Ingrese el título" />
-                {meta.error && meta.touched && <span>{meta.error}</span>}
-              </div>
-            )}
-          </Field>
-          <Field name="plot" validate={required}>
-            {({ input, meta }) => (
-              <div>
-                <label>Sinopsis</label>
+                <label>Nombre</label>
                 <input
                   {...input}
                   type="text"
-                  placeholder="Ingrese la sinopsis"
+                  placeholder="Ingrese su nombre completo"
                 />
                 {meta.error && meta.touched && <span>{meta.error}</span>}
               </div>
             )}
           </Field>
-          <Field name="poster" validate={required}>
+          <Field name="id_number" validate={required}>
             {({ input, meta }) => (
               <div>
-                <label>Poster</label>
+                <label>Cédula</label>
                 <input
                   {...input}
                   type="text"
-                  placeholder="Ingrese la url de la imagen"
+                  placeholder="Ingrese su número de cédula"
+                />
+                {meta.error && meta.touched && <span>{meta.error}</span>}
+              </div>
+            )}
+          </Field>
+          <Field name="mobile" validate={required}>
+            {({ input, meta }) => (
+              <div>
+                <label>Celular</label>
+                <input
+                  {...input}
+                  type="text"
+                  placeholder="Ingrese su número de celular"
+                />
+                {meta.error && meta.touched && <span>{meta.error}</span>}
+              </div>
+            )}
+          </Field>
+          <Field
+            name="email"
+            validate={composeValidators(required, emailValidator)}
+          >
+            {({ input, meta }) => (
+              <div>
+                <label>Correo electrónico</label>
+                <input
+                  {...input}
+                  type="text"
+                  placeholder="Ingrese su correo electrónico"
                 />
                 {meta.error && meta.touched && <span>{meta.error}</span>}
               </div>
@@ -73,15 +105,6 @@ const NewMovieForm = () => {
           >
             Seleccione las fechas
           </label>
-          <DateRange
-            css={css`
-              margin-top: 0.7rem;
-            `}
-            editableDateInputs={true}
-            onChange={item => setDates([item.selection])}
-            moveRangeOnFirstSelection={false}
-            ranges={dates}
-          />
           <div css={blockStyles}>
             <Field
               name="Confirmar"
@@ -106,11 +129,10 @@ const NewMovieForm = () => {
               Cancelar
             </button>
           </div>
-          {/* <pre>{JSON.stringify({ ...values, dates }, 0, 2)}</pre> */}
         </form>
       )}
     />
   );
 };
 
-export default NewMovieForm;
+export default NewReservationForm;

@@ -28,6 +28,7 @@ const ModalContainer = styled.div`
   z-index: 5;
   top: 64px;
 `;
+
 const Modalizer = ({ children }) => {
   return (
     <>
@@ -39,7 +40,7 @@ const Modalizer = ({ children }) => {
 };
 
 Modalizer.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Modalizer;
