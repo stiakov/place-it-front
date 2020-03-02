@@ -13,7 +13,6 @@ import {
 
 const NewReservationForm = ({ movie }) => {
   const dispatch = useDispatch();
-  console.log('El componente se ha lanzado ->', movie.title);
 
   const submitCreation = data => {
     dispatch(createReservation(data));

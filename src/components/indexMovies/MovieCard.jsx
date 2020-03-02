@@ -71,7 +71,6 @@ const buttonStyle = css`
 
 const MovieCard = ({ id, title, plot, poster, projections, showModal }) => {
   const [showMe, setShowMe] = useState(false);
-  // const [showMeParent, setShowMeParent] = useState(showModal);
   // console.log('projections ', projections);
   const dispatch = useDispatch();
 
@@ -79,17 +78,13 @@ const MovieCard = ({ id, title, plot, poster, projections, showModal }) => {
     e.preventDefault();
     e.stopPropagation();
     setShowMe(showModal);
-    // setShowMeParent(showModal);
     dispatch(setShowNewReservationModal(true));
   };
 
   useEffect(() => {
     return () => {
-      console.log('Do some cleanup');
-      console.log('showModal', showModal);
       if (!showModal) {
         setShowMe(false);
-        // setShowMeParent(showModal);
       }
     };
   }, [showModal]);

@@ -8,10 +8,10 @@ import {
 const movieReducer = (state = [], { type, payload }) => {
   switch (type) {
     case GET_ALL_MOVIES:
-      console.log('all ', payload)
+      console.log('all sample', payload[0]);
       return { ...state, all: payload };
     case FILTER_BY_DATE:
-      console.log(payload)
+      console.log('filtered sample', payload[0]);
       let movies = payload.map(item => item.movie);
       let projections = payload.map(item => item.projections);
       movies =
