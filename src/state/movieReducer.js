@@ -8,23 +8,9 @@ import {
 const movieReducer = (state = [], { type, payload }) => {
   switch (type) {
     case GET_ALL_MOVIES:
-      console.log('all sample', payload[0]);
       return { ...state, all: payload };
     case FILTER_BY_DATE:
-      console.log('filtered sample', payload[0]);
-      let movies = payload.map(item => item.movie);
-      let projections = payload.map(item => item.projections);
-      movies =
-        movies.length > 0
-          ? movies
-          : [
-              {
-                title: 'No hay elementos para mostrar',
-                poster: 'https://i.imgur.com/v7fzWHO.jpg',
-                plot: '',
-              },
-            ];
-      return { ...state, all: movies, projections };
+      return { ...state, all: payload };
     case SHOW_NEW_MOVIE_MODAL:
       return { ...state, showModalNew: payload };
     case CREATE_MOVIE:
