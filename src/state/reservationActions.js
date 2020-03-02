@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { BASE_URL } from './index';
+import { getAllMovies } from './movieActions'
 
 const GET_ALL_RESERVATIONS = 'GET_ALL_RESERVATIONS';
 const FILTER_BY_ID_NUMBER = 'FILTER_BY_ID_NUMBER';
@@ -17,7 +18,7 @@ const filterByIdNumberTask = data => ({
 });
 
 const createReservationTask = () => ({
-  type: CREATE_MOVIE,
+  type: CREATE_RESERVATION,
 });
 
 const setShowModalTask = data => ({
@@ -37,15 +38,15 @@ const filterByIdNumber = id_number => dispatch => {
 };
 
 const createReservation = data => dispatch => {
-  axios.post(`${BASE_URL}/movies`, data).then(response => {
+  axios.post(`${BASE_URL}/reservations`, data).then(response => {
     dispatch(createReservationTask(response));
-    dispatch(getAllReservations());
+    dispatch(getAllMovies());
     dispatch(setShowModalTask(false));
   }, console.error);
 };
 
 const setShowNewReservationModal = value => dispatch => {
-  dispatch(setShowModalTask(value));
+  return dispatch(setShowModalTask(value));
 };
 
 export {

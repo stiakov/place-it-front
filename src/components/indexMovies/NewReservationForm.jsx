@@ -1,6 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { css } from '@emotion/core';
+import { connect, useDispatch } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 import {
   createReservation,
@@ -12,18 +11,19 @@ import {
   blockStyles,
 } from '../sharedStyles';
 
-const movieTemplate = {
-  title: 'ohh no',
-  plot: 'ohh no',
-  poster: 'ohh no',
-};
-
-const NewReservationForm = (movie = movieTemplate) => {
+const NewReservationForm = ({ movie }) => {
   const dispatch = useDispatch();
-  console.log('El componente se ha lanzado ->', movie);
+  console.log('El componente se ha lanzado ->', movie.title);
 
-  const submitCreation = data => dispatch(createReservation(data));
-  const cancelCreation = () => dispatch(setShowNewReservationModal(false));
+  const submitCreation = data => {
+    dispatch(createReservation(data));
+  };
+
+  const cancelCreation = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch(setShowNewReservationModal(false));
+  };
 
   const composeValidators = (...validators) => value =>
     validators.reduce(
@@ -33,14 +33,14 @@ const NewReservationForm = (movie = movieTemplate) => {
 
   const required = value => (value ? undefined : 'Requerido');
   const emailValidator = str => {
-    const pattern = RegExp(`/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/`);
-    return pattern.test(str) || 'Correo electrónico incorrecto';
+    const pattern = RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+    return pattern.test(str) ? undefined : 'Correo electrónico incorrecto';
   };
 
   return (
     <Form
-      onSubmit={values => submitCreation({ ...values, dates })}
-      render={({ handleSubmit }) => (
+      onSubmit={values => submitCreation({ ...values, ...movie })}
+      render={({ handleSubmit, values }) => (
         <form onSubmit={handleSubmit}>
           <h3>Reservar</h3>
           <Field name="name" validate={required}>
@@ -82,6 +82,21 @@ const NewReservationForm = (movie = movieTemplate) => {
               </div>
             )}
           </Field>
+
+          <label>Fechas disponibles</label>
+          <Field name="showtime" component="select" validate={required}>
+            <option />
+            {movie.projections.map(item => (
+              <option value={item.showtime} key={item.showtime}>
+                {item.reservations
+                  ? item.reservations.length < 10
+                    ? `${item.showtime} - ${10 -
+                        item.reservations.length} disponibles`
+                    : `${item.showtime} - No disponible`
+                  : 'HAA'}
+              </option>
+            ))}
+          </Field>
           <Field
             name="email"
             validate={composeValidators(required, emailValidator)}
@@ -98,24 +113,6 @@ const NewReservationForm = (movie = movieTemplate) => {
               </div>
             )}
           </Field>
-          <label
-            css={css`
-              margin-top: 0.7rem;
-            `}
-          >
-            Seleccione las fechas
-          </label>
-          <div css={blockStyles}>
-            <Field
-              name="Confirmar"
-              component="input"
-              type="checkbox"
-              validate={required}
-            />
-            <label htmlFor="Confirmar">
-              Confirmo que los datos son correctos
-            </label>
-          </div>
           <div css={blockStyles} className="buttons">
             <button type="submit" css={addButtonStyles}>
               ┼ &nbsp; Guardar
@@ -123,16 +120,22 @@ const NewReservationForm = (movie = movieTemplate) => {
             <button
               css={cancelButtonStyles}
               type="cancel"
-              onClick={() => cancelCreation()}
+              onClick={e => cancelCreation(e)}
               type="button"
             >
               Cancelar
             </button>
           </div>
+          <pre>{JSON.stringify({ ...values, ...movie }, null, 2)}</pre>
         </form>
       )}
     />
   );
 };
 
-export default NewReservationForm;
+const mapStateToProps = state => ({
+  movies: state.reservations.all,
+  showModal: state.reservations.showModalNew,
+});
+
+export default connect(mapStateToProps, null)(NewReservationForm);
