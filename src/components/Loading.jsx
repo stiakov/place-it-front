@@ -11,7 +11,7 @@ const loadingStyles = css`
 
 const sendingStyles = css`
   display: flex;
-  justify-items: space-around;
+  justify-content: center;
   vertical-align: center;
   flex-flow: row nowrap;
 `;
