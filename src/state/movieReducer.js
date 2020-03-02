@@ -8,9 +8,12 @@ import {
 const movieReducer = (state = [], { type, payload }) => {
   switch (type) {
     case GET_ALL_MOVIES:
+      console.log('all ', payload)
       return { ...state, all: payload };
     case FILTER_BY_DATE:
+      console.log(payload)
       let movies = payload.map(item => item.movie);
+      let projections = payload.map(item => item.projections);
       movies =
         movies.length > 0
           ? movies
@@ -21,7 +24,7 @@ const movieReducer = (state = [], { type, payload }) => {
                 plot: '',
               },
             ];
-      return { ...state, all: movies };
+      return { ...state, all: movies, projections };
     case SHOW_NEW_MOVIE_MODAL:
       return { ...state, showModalNew: payload };
     case CREATE_MOVIE:
