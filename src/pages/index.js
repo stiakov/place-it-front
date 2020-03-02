@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import styled from '@emotion/styled';
 import Layout from '../components/layout';
@@ -42,6 +42,7 @@ const IndexPage = ({ movies, showModal }) => {
       <NewMovieForm />
     </Modalizer>
   );
+  const MemoizedCard = memo(MovieCard);
 
   return (
     <Layout>
@@ -57,7 +58,7 @@ const IndexPage = ({ movies, showModal }) => {
           movies[0].title !== 'No hay elementos para mostrar' ? (
             movies.map(item => {
               return (
-                <MovieCard
+                <MemoizedCard
                   key={item.title}
                   id={item.id}
                   title={item.title}

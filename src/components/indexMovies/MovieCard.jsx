@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
@@ -70,13 +70,29 @@ const buttonStyle = css`
 `;
 
 const MovieCard = ({ id, title, plot, poster, projections, showModal }) => {
-  console.log('projections ', projections)
+  const [showMe, setShowMe] = useState(false);
+  // const [showMeParent, setShowMeParent] = useState(showModal);
+  // console.log('projections ', projections);
   const dispatch = useDispatch();
+
   const handleClick = e => {
     e.preventDefault();
     e.stopPropagation();
+    setShowMe(showModal);
+    // setShowMeParent(showModal);
     dispatch(setShowNewReservationModal(true));
   };
+
+  useEffect(() => {
+    return () => {
+      console.log('Do some cleanup');
+      console.log('showModal', showModal);
+      if (!showModal) {
+        setShowMe(false);
+        // setShowMeParent(showModal);
+      }
+    };
+  }, [showModal]);
 
   const NewReservationModal = () => (
     <Modalizer>
@@ -91,7 +107,7 @@ const MovieCard = ({ id, title, plot, poster, projections, showModal }) => {
           Reservar
         </button>
       </div>
-      {showModal ? <NewReservationModal /> : null}
+      {showMe && showModal ? <NewReservationModal /> : null}
     </>
   );
 };

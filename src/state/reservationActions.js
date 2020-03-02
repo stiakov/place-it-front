@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { BASE_URL } from './index';
-import { getAllMovies } from './movieActions'
-
+import { getAllMovies } from './movieActions';
 const GET_ALL_RESERVATIONS = 'GET_ALL_RESERVATIONS';
 const FILTER_BY_ID_NUMBER = 'FILTER_BY_ID_NUMBER';
 const CREATE_RESERVATION = 'CREATE_RESERVATION';

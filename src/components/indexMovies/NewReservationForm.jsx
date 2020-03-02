@@ -82,21 +82,6 @@ const NewReservationForm = ({ movie }) => {
               </div>
             )}
           </Field>
-
-          <label>Fechas disponibles</label>
-          <Field name="showtime" component="select" validate={required}>
-            <option />
-            {movie.projections.map(item => (
-              <option value={item.showtime} key={item.showtime}>
-                {item.reservations
-                  ? item.reservations.length < 10
-                    ? `${item.showtime} - ${10 -
-                        item.reservations.length} disponibles`
-                    : `${item.showtime} - No disponible`
-                  : 'HAA'}
-              </option>
-            ))}
-          </Field>
           <Field
             name="email"
             validate={composeValidators(required, emailValidator)}
@@ -113,6 +98,21 @@ const NewReservationForm = ({ movie }) => {
               </div>
             )}
           </Field>
+          <label>Fechas disponibles</label>
+          <Field name="showtime" component="select" validate={required}>
+            <option />
+            {movie.projections.map(item => (
+              <option value={item.showtime} key={item.showtime}>
+                {item.reservations
+                  ? item.reservations.length < 10
+                    ? `${item.showtime} - ${10 -
+                        item.reservations.length} disponibles`
+                    : `${item.showtime} - No disponible`
+                  : 'HAA'}
+              </option>
+            ))}
+          </Field>
+          
           <div css={blockStyles} className="buttons">
             <button type="submit" css={addButtonStyles}>
               ┼ &nbsp; Guardar
