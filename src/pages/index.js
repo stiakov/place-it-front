@@ -55,14 +55,18 @@ const IndexPage = ({ movies, showModal }) => {
         {movies.length > 0 ? (
           movies.length > 0 &&
           movies[0].title !== 'No hay elementos para mostrar' ? (
-            movies.map(item => (
-              <MovieCard
-                key={item.title}
-                title={item.title}
-                plot={item.plot}
-                poster={item.poster}
-              />
-            ))
+            movies.map(item => {
+              return (
+                <MovieCard
+                  key={item.title}
+                  id={item.id}
+                  title={item.title}
+                  plot={item.plot}
+                  poster={item.poster}
+                  projections={item.projections}
+                />
+              );
+            })
           ) : (
             <h1>No hay elementos para mostrar</h1>
           )
