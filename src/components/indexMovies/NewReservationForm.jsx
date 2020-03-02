@@ -126,7 +126,7 @@ const NewReservationForm = ({ movie }) => {
               Cancelar
             </button>
           </div>
-          <pre>{JSON.stringify({ ...values, ...movie }, null, 2)}</pre>
+          {/* <pre>{JSON.stringify({ ...values, ...movie }, null, 2)}</pre> */}
         </form>
       )}
     />
