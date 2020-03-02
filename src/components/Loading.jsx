@@ -5,34 +5,20 @@ const Loading = () => {
   return (
     <div
       css={css`
+        margin-top: 9rem;
         display: flex;
         justify-items: center;
+        vertical-align: center;
+        flex-flow: column nowrap;
       `}
     >
-      <img
-        src="https://media.giphy.com/media/cJN8BKhgBSos8sDRHP/giphy.gif"
-        alt="loading..."
-        css={css`
-          @media (max-width: 576px) {
-            width: 90%;
-            height: auto;
-          }
-          @media (min-width: 768px) {
-            width: 70%;
-            height: auto;
-          }
-
-          @media (min-width: 992px) {
-            width: 80%;
-            height: auto;
-          }
-
-          @media (min-width: 1200px) {
-            width: 100%;
-            height: auto;
-          }
-        `}
-      />
+      <div>
+        <div class="lds-ripple">
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <h4>Cargando</h4>
     </div>
   );
 };
