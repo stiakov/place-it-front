@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
 import Modalizer from '../Modalizer';
@@ -69,7 +69,8 @@ const buttonStyle = css`
   }
 `;
 
-const MovieCard = ({ title, plot, poster, showModal }) => {
+const MovieCard = ({ id, title, plot, poster, projections, showModal }) => {
+  const dispatch = useDispatch();
   const handleClick = e => {
     e.preventDefault();
     e.stopPropagation();
@@ -78,7 +79,7 @@ const MovieCard = ({ title, plot, poster, showModal }) => {
 
   const NewReservationModal = () => (
     <Modalizer>
-      <NewReservationForm movie={{ title, plot, poster }} />
+      <NewReservationForm movie={{ id, title, plot, poster, projections }} />
     </Modalizer>
   );
   return (
