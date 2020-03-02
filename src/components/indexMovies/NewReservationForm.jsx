@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { Form, Field } from 'react-final-form';
+import Loading from '../Loading';
 import {
   createReservation,
   setShowNewReservationModal,
@@ -13,9 +14,11 @@ import {
 
 const NewReservationForm = ({ movie }) => {
   const dispatch = useDispatch();
+  const [showSpinner, setShowSpinner] = useState(false);
 
   const submitCreation = data => {
     dispatch(createReservation(data));
+    setShowSpinner(true);
   };
 
   const cancelCreation = e => {
@@ -109,6 +112,8 @@ const NewReservationForm = ({ movie }) => {
               </option>
             ))}
           </Field>
+
+          {showSpinner ? <Loading sending /> : null}
 
           <div css={blockStyles} className="buttons">
             <button type="submit" css={addButtonStyles}>

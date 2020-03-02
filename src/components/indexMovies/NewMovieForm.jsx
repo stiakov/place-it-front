@@ -4,6 +4,7 @@ import { css } from '@emotion/core';
 import { Form, Field } from 'react-final-form';
 import { DateRange } from 'react-date-range';
 import { createMovie, setShowNewMovieModal } from '../../state/movieActions';
+import Loading from '../Loading';
 import {
   addButtonStyles,
   cancelButtonStyles,
@@ -12,7 +13,7 @@ import {
 
 const NewMovieForm = () => {
   const dispatch = useDispatch();
-
+  const [showSpinner, setShowSpinner] = useState(false);
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
@@ -21,7 +22,11 @@ const NewMovieForm = () => {
     },
   ]);
 
-  const submitCreation = data => dispatch(createMovie(data));
+  const submitCreation = data => {
+    dispatch(createMovie(data));
+    setShowSpinner(true);
+  };
+
   const cancelCreation = () => dispatch(setShowNewMovieModal(false));
   const required = value => (value ? undefined : 'Requerido');
 
@@ -93,6 +98,9 @@ const NewMovieForm = () => {
               Confirmo que los datos son correctos
             </label>
           </div>
+
+          {showSpinner ? <Loading sending /> : null}
+
           <div css={blockStyles} className="buttons">
             <button type="submit" css={addButtonStyles}>
               ┼ &nbsp; Guardar
