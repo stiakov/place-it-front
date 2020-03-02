@@ -102,16 +102,14 @@ const NewReservationForm = ({ movie }) => {
             <option />
             {movie.projections.map(item => (
               <option value={item.showtime} key={item.showtime}>
-                {item.reservations
-                  ? item.reservations.length < 10
-                    ? `${item.showtime} - ${10 -
-                        item.reservations.length} disponibles`
-                    : `${item.showtime} - No disponible`
-                  : 'HAA'}
+                {item.reservations.length < 10
+                  ? `${item.showtime} - ${10 -
+                      item.reservations.length} disponibles`
+                  : `${item.showtime} - No disponible`}
               </option>
             ))}
           </Field>
-          
+
           <div css={blockStyles} className="buttons">
             <button type="submit" css={addButtonStyles}>
               ┼ &nbsp; Guardar
