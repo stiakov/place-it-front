@@ -70,6 +70,7 @@ const buttonStyle = css`
 `;
 
 const MovieCard = ({ id, title, plot, poster, projections, showModal }) => {
+  console.log('projections ', projections)
   const dispatch = useDispatch();
   const handleClick = e => {
     e.preventDefault();
