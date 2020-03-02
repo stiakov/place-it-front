@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import styled from '@emotion/styled';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { getAllMovies, setShowNewMovieModal } from '../state/movieActions';
-import MovieCard from '../components/MovieCard';
+import MovieCard from '../components/indexMovies/MovieCard';
 import { SectionHeader } from '../components/sectionHeader';
 import Modalizer from '../components/Modalizer';
 import Loading from '../components/Loading';
-import NewMovieForm from '../components/NewMovieForm';
+import NewMovieForm from '../components/indexMovies/NewMovieForm';
 import { addButtonStyles } from '../components/sharedStyles';
-import FilterByDateComponent from '../components/FilterByDate';
+import FilterByDateComponent from '../components/indexMovies/FilterByDate';
 
 const MoviesContainer = styled.section`
   display: flex;
@@ -42,6 +42,7 @@ const IndexPage = ({ movies, showModal }) => {
       <NewMovieForm />
     </Modalizer>
   );
+  const MemoizedCard = memo(MovieCard);
 
   return (
     <Layout>
@@ -55,14 +56,18 @@ const IndexPage = ({ movies, showModal }) => {
         {movies.length > 0 ? (
           movies.length > 0 &&
           movies[0].title !== 'No hay elementos para mostrar' ? (
-            movies.map(item => (
-              <MovieCard
-                key={item.title}
-                title={item.title}
-                plot={item.plot}
-                poster={item.poster}
-              />
-            ))
+            movies.map(item => {
+              return (
+                <MemoizedCard
+                  key={item.title}
+                  id={item.id}
+                  title={item.title}
+                  plot={item.plot}
+                  poster={item.poster}
+                  projections={item.projections}
+                />
+              );
+            })
           ) : (
             <h1>No hay elementos para mostrar</h1>
           )

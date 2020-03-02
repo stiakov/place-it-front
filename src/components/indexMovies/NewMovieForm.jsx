@@ -3,16 +3,17 @@ import { useDispatch } from 'react-redux';
 import { css } from '@emotion/core';
 import { Form, Field } from 'react-final-form';
 import { DateRange } from 'react-date-range';
-import { createMovie, setShowNewMovieModal } from '../state/movieActions';
+import { createMovie, setShowNewMovieModal } from '../../state/movieActions';
+import Loading from '../Loading';
 import {
   addButtonStyles,
   cancelButtonStyles,
   blockStyles,
-} from './sharedStyles';
+} from '../sharedStyles';
 
 const NewMovieForm = () => {
   const dispatch = useDispatch();
-
+  const [showSpinner, setShowSpinner] = useState(false);
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
@@ -21,14 +22,18 @@ const NewMovieForm = () => {
     },
   ]);
 
-  const submitCreation = data => dispatch(createMovie(data));
+  const submitCreation = data => {
+    dispatch(createMovie(data));
+    setShowSpinner(true);
+  };
+
   const cancelCreation = () => dispatch(setShowNewMovieModal(false));
   const required = value => (value ? undefined : 'Requerido');
 
   return (
     <Form
       onSubmit={values => submitCreation({ ...values, dates })}
-      render={({ handleSubmit }) => (
+      render={({ handleSubmit, values }) => (
         <form onSubmit={handleSubmit}>
           <h3>Nueva película</h3>
           <Field name="title" validate={required}>
@@ -93,6 +98,9 @@ const NewMovieForm = () => {
               Confirmo que los datos son correctos
             </label>
           </div>
+
+          {showSpinner ? <Loading sending /> : null}
+
           <div css={blockStyles} className="buttons">
             <button type="submit" css={addButtonStyles}>
               ┼ &nbsp; Guardar

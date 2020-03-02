@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { css } from '@emotion/core';
-import { filterByDate, getAllMovies } from '../state/movieActions';
-import { addButtonStyles } from './sharedStyles';
+import { filterByDate, getAllMovies } from '../../state/movieActions';
+import { filterButtonStyles } from '../sharedStyles';
 
 const FilterByDateComponent = ({ filter }) => {
   const dispatch = useDispatch();
@@ -19,17 +19,45 @@ const FilterByDateComponent = ({ filter }) => {
   };
 
   return (
-    <form>
+    <form
+      css={css`
+        max-width: 27rem;
+        min-width: 27rem;
+        margin: 0;
+        @media (max-width: 576px) {
+          margin-left: 1rem;
+          margin-bottom: 1rem;
+        }
+      `}
+    >
       <div
         css={css`
+          max-width: 27rem;
           display: flex;
           flex-flow: row wrap;
+          justify-content: space-evenly;
+          vertical-align: center;
+          @media (max-width: 576px) {
+            justify-content: left;
+            max-width: 20rem !important;
+          }
         `}
       >
-        <label htmlFor="showtime">Seleccionar fecha</label>
+        <label
+          css={css`
+            margin-top: 0;
+            @media (max-width: 576px) {
+              margin-right: 1rem;
+            }
+          `}
+          htmlFor="showtime"
+        >
+          Seleccionar fecha
+        </label>
         <input
           css={css`
-            max-width: 15rem;
+            height: 26px;
+            max-width: 11rem;
           `}
           id="date-filter-input"
           name="showtime"
@@ -37,11 +65,11 @@ const FilterByDateComponent = ({ filter }) => {
           onChange={e => handleFilterChange(e)}
         />
         <button
-          css={addButtonStyles}
+          css={filterButtonStyles}
           type="submit"
           onClick={e => handleReset(e)}
         >
-          RESET
+          Reset
         </button>
       </div>
     </form>

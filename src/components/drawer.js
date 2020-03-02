@@ -6,6 +6,8 @@ import { Link } from 'gatsby';
 import { toggleDrawer as toggleDrawerAction } from '../state/app';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTicketAlt, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { setShowNewMovieModal } from '../state/movieActions';
+import { setShowNewReservationModal } from '../state/reservationActions';
 
 const Paper = styled.aside`
   position: fixed;
@@ -63,5 +65,11 @@ const Drawer = ({ isDrawerOpen, toggleDrawer }) => (
 
 export default connect(
   state => ({ isDrawerOpen: state.app.isDrawerOpen }),
-  dispatch => ({ toggleDrawer: open => dispatch(toggleDrawerAction(open)) }),
+  dispatch => ({
+    toggleDrawer: open => {
+      dispatch(toggleDrawerAction(open));
+      dispatch(setShowNewMovieModal(false));
+      dispatch(setShowNewReservationModal(false));
+    },
+  }),
 )(Drawer);
