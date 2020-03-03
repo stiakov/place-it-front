@@ -1,6 +1,7 @@
 import React, { useEffect, memo } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { getAllMovies, setShowNewMovieModal } from '../state/movieActions';
@@ -53,9 +54,8 @@ const IndexPage = ({ movies, showModal }) => {
       <SectionHeader title="Películas" extra={<AddMovie />} />
       <FilterByDateComponent></FilterByDateComponent>
       <MoviesContainer>
-        {movies.length > 0 ? (
-          movies.length > 0 &&
-          movies[0].title !== 'No hay elementos para mostrar' ? (
+        {movies ? (
+          movies.length > 0 ? (
             movies.map(item => {
               return (
                 <MemoizedCard
@@ -69,7 +69,14 @@ const IndexPage = ({ movies, showModal }) => {
               );
             })
           ) : (
-            <h1>No hay elementos para mostrar</h1>
+            <h1
+              css={css`
+                margin-top: 5rem;
+                text-align: center;
+              `}
+            >
+              No hay elementos para mostrar
+            </h1>
           )
         ) : (
           <Loading />

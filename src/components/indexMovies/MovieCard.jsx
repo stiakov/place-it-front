@@ -71,7 +71,6 @@ const buttonStyle = css`
 
 const MovieCard = ({ id, title, plot, poster, projections, showModal }) => {
   const [showMe, setShowMe] = useState(false);
-  // console.log('projections ', projections);
   const dispatch = useDispatch();
 
   const handleClick = e => {
