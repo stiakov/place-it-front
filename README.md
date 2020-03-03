@@ -2,14 +2,16 @@
 ![](https://img.shields.io/badge/Redux-4.0.5-green?style=flat-square)
 ![](https://img.shields.io/badge/Beta-0.7-red?style=flat-square)
 
-# PlaceIt Cinema 📽
+# PlaceIt Cinema Billboard 📽
 
-PlaceIt Cinema is a prototypical responsive web app for a fictional cinema where people can reserve their preferred movie shows. This repository hosts the code-base for the main User Interface, developed with React/Redux, Gatsby, GraphQL, also you can check the codebase for the backend in this [repo](https://github.com/stiakov/place-it-api).
+PlaceIt Cinema Billboard is a prototypical responsive web app for a fictional cinema where people can reserve their preferred movie shows. 
+
+This repository hosts the code-base for the main User Interface, developed with React/Redux, Gatsby, GraphQL, also you can check the codebase for the backend in this [open source repo](https://github.com/stiakov/place-it-api).
 
 ## Getting Started
 
-### Love Previews 👁
-* Live deployment here: https://tastexplorer.herokuapp.com/
+### Live Preview 👁
+* Live deployment here -> [PlaceIt Cinema Billboard](https://stiakov.github.io/place-it-front/)
 
 ### Built with ⚛️
 ## Front-end
