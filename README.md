@@ -35,7 +35,7 @@ This repository hosts the code-base for the main User Interface, developed with 
 * Run `npm install` on the project's root directory.
 
 ### Run the server 🚀
-* Run this command: `npm run build`
+* Run this command: `npm run develop`
 
 ## Author
 
