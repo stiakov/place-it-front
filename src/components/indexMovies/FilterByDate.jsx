@@ -1,21 +1,40 @@
 import React from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { css } from '@emotion/core';
-import { filterByDate, getAllMovies } from '../../state/movieActions';
+import {
+  filterByDate,
+  getAllMovies,
+  setShowSpinner as setShowSpinnerMovies,
+} from '../../state/movieActions';
+import {
+  filterByDate as filterReservationsByDate,
+  getAllReservations,
+  setShowSpinner as setShowSpinnerReservations,
+} from '../../state/reservationActions';
 import { filterButtonStyles } from '../sharedStyles';
 
-const FilterByDateComponent = ({ filter }) => {
-  const dispatch = useDispatch();
-
+const FilterByDateComponent = ({ code, dispatch }) => {
   const handleReset = e => {
     e.preventDefault();
     document.getElementById('date-filter-input').value = null;
-    dispatch(getAllMovies());
+    if (code === 'reservations') {
+      dispatch(setShowSpinnerReservations());
+      dispatch(getAllReservations());
+    } else {
+      dispatch(setShowSpinnerMovies());
+      dispatch(getAllMovies());
+    }
   };
 
   const handleFilterChange = e => {
     e.preventDefault();
-    dispatch(filterByDate(e.target.value));
+    if (code === 'reservations') {
+      dispatch(filterReservationsByDate(e.target.value));
+      dispatch(setShowSpinnerReservations());
+    } else {
+      dispatch(setShowSpinnerMovies());
+      dispatch(filterByDate(e.target.value));
+    }
   };
 
   return (

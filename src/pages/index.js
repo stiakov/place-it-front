@@ -12,6 +12,7 @@ import Loading from '../components/Loading';
 import NewMovieForm from '../components/indexMovies/NewMovieForm';
 import { addButtonStyles } from '../components/sharedStyles';
 import FilterByDateComponent from '../components/indexMovies/FilterByDate';
+import ZeroContent from '../components/indexMovies/ZeroContent';
 
 const MoviesContainer = styled.section`
   display: flex;
@@ -20,8 +21,7 @@ const MoviesContainer = styled.section`
   width: 100%;
 `;
 
-const IndexPage = ({ movies, showModal }) => {
-  const dispatch = useDispatch();
+const IndexPage = ({ movies, showModal, dispatch }) => {
   useEffect(() => {
     dispatch(getAllMovies());
   }, [dispatch]);
@@ -52,7 +52,7 @@ const IndexPage = ({ movies, showModal }) => {
         keywords={['cinema', 'booking', 'films', 'reserva', 'cine', 'films']}
       />
       <SectionHeader title="Películas" extra={<AddMovie />} />
-      <FilterByDateComponent></FilterByDateComponent>
+      <FilterByDateComponent code="movies"></FilterByDateComponent>
       <MoviesContainer>
         {movies ? (
           movies.length > 0 ? (
@@ -69,14 +69,7 @@ const IndexPage = ({ movies, showModal }) => {
               );
             })
           ) : (
-            <h1
-              css={css`
-                margin-top: 5rem;
-                text-align: center;
-              `}
-            >
-              No hay elementos para mostrar
-            </h1>
+            <ZeroContent />
           )
         ) : (
           <Loading />
