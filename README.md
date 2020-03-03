@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/React-16.12.0-blue)
-![](https://img.shields.io/badge/Redux-4.0.5-green?style=flat-square)
-![](https://img.shields.io/badge/Beta-0.7-red?style=flat-square)
+![](https://img.shields.io/badge/Redux-4.0.1-green?style=flat-square)
+![](https://img.shields.io/badge/Beta-0.76-red?style=flat-square)
 
 # PlaceIt Cinema Billboard 📽
 
