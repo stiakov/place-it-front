@@ -8,12 +8,12 @@ const SHOW_NEW_MOVIE_MODAL = 'SHOW_NEW_MOVIE_MODAL';
 
 const getAllMoviesTask = response => ({
   type: GET_ALL_MOVIES,
-  payload: response.data,
+  payload: response.data.movies,
 });
 
 const filterByDateTask = data => ({
   type: FILTER_BY_DATE,
-  payload: data,
+  payload: data.movies,
 });
 
 const createMovieTask = () => ({
@@ -31,9 +31,15 @@ const getAllMovies = () => dispatch =>
   }, console.error);
 
 const filterByDate = showtime => dispatch => {
-  axios.get(`${BASE_URL}/projections/filter/${showtime}`).then(response => {
-    dispatch(filterByDateTask(response.data));
-  }, console.error);
+  axios.get(`${BASE_URL}/projections/filter/${showtime}`).then(
+    response => {
+      dispatch(filterByDateTask(response.data));
+    },
+    () => {
+      console.error;
+      dispatch(filterByDateTask({ movies: [] }));
+    },
+  );
 };
 
 const createMovie = data => dispatch => {

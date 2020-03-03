@@ -7,8 +7,8 @@ const CREATE_RESERVATION = 'CREATE_RESERVATION';
 const SHOW_NEW_RESERVATION_MODAL = 'SHOW_NEW_RESERVATION_MODAL';
 
 const getAllReservationsTask = response => ({
-  type: GET_ALL_MOVIES,
-  payload: response.data,
+  type: GET_ALL_RESERVATIONS,
+  payload: response.data.reservations,
 });
 
 const filterByIdNumberTask = data => ({
