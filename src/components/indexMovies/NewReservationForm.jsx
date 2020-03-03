@@ -44,7 +44,7 @@ const NewReservationForm = ({ movie }) => {
       onSubmit={values => submitCreation({ ...values, ...movie })}
       render={({ handleSubmit, values }) => (
         <form onSubmit={handleSubmit}>
-          <h3>Reservar</h3>
+          <h3>Reserva para {movie.title}</h3>{' '}
           <Field name="name" validate={required}>
             {({ input, meta }) => (
               <div>
@@ -112,9 +112,7 @@ const NewReservationForm = ({ movie }) => {
               </option>
             ))}
           </Field>
-
           {showSpinner ? <Loading sending /> : null}
-
           <div css={blockStyles} className="buttons">
             <button type="submit" css={addButtonStyles}>
               ┼ &nbsp; Guardar
