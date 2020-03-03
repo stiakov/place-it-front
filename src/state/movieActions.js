@@ -5,6 +5,7 @@ const GET_ALL_MOVIES = 'GET_ALL_MOVIES';
 const FILTER_BY_DATE = 'FILTER_BY_DATE';
 const CREATE_MOVIE = 'CREATE_MOVIE';
 const SHOW_NEW_MOVIE_MODAL = 'SHOW_NEW_MOVIE_MODAL';
+const SHOW_SPINNER = 'SHOW_SPINNER';
 
 const getAllMoviesTask = response => ({
   type: GET_ALL_MOVIES,
@@ -25,6 +26,10 @@ const setShowModalTask = data => ({
   payload: data,
 });
 
+const setShowSpinnerTask = value => ({
+  type: SHOW_SPINNER,
+  payload: value,
+});
 const getAllMovies = () => dispatch =>
   axios.get(`${BASE_URL}/movies`).then(response => {
     dispatch(getAllMoviesTask(response));
@@ -54,6 +59,10 @@ const setShowNewMovieModal = value => dispatch => {
   dispatch(setShowModalTask(value));
 };
 
+const setShowSpinner = (value = undefined) => dispatch => {
+  return dispatch(setShowSpinnerTask(value));
+};
+
 export {
   GET_ALL_MOVIES,
   getAllMovies,
@@ -63,4 +72,6 @@ export {
   createMovie,
   FILTER_BY_DATE,
   filterByDate,
+  SHOW_SPINNER,
+  setShowSpinner,
 };

@@ -3,6 +3,7 @@ import {
   FILTER_BY_DATE,
   SHOW_NEW_MOVIE_MODAL,
   CREATE_MOVIE,
+  SHOW_SPINNER,
 } from './movieActions';
 
 const movieReducer = (state = [], { type, payload }) => {
@@ -15,6 +16,8 @@ const movieReducer = (state = [], { type, payload }) => {
       return { ...state, showModalNew: payload };
     case CREATE_MOVIE:
       return state;
+    case SHOW_SPINNER:
+      return { ...state, all: payload };
     default:
       return state;
   }

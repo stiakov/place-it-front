@@ -14,7 +14,7 @@ const initState = {
     showModalNew: false,
   },
   reservations: {
-    all: [],
+    all: undefined,
     showModalNew: false,
   },
 };

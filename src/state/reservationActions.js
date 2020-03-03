@@ -2,18 +2,19 @@ import axios from 'axios';
 import { BASE_URL } from './index';
 import { getAllMovies } from './movieActions';
 const GET_ALL_RESERVATIONS = 'GET_ALL_RESERVATIONS';
-const FILTER_BY_ID_NUMBER = 'FILTER_BY_ID_NUMBER';
+const FILTER_BY_DATE = 'FILTER_BY_DATE';
 const CREATE_RESERVATION = 'CREATE_RESERVATION';
 const SHOW_NEW_RESERVATION_MODAL = 'SHOW_NEW_RESERVATION_MODAL';
+const SHOW_SPINNER = 'SHOW_SPINNER';
 
 const getAllReservationsTask = response => ({
   type: GET_ALL_RESERVATIONS,
   payload: response.data.reservations,
 });
 
-const filterByIdNumberTask = data => ({
+const filterByDateTask = data => ({
   type: FILTER_BY_DATE,
-  payload: data,
+  payload: data.reservations,
 });
 
 const createReservationTask = () => ({
@@ -25,14 +26,19 @@ const setShowModalTask = data => ({
   payload: data,
 });
 
+const setShowSpinnerTask = value => ({
+  type: SHOW_SPINNER,
+  payload: value,
+});
+
 const getAllReservations = () => dispatch =>
   axios.get(`${BASE_URL}/reservations`).then(response => {
     dispatch(getAllReservationsTask(response));
   }, console.error);
 
-const filterByIdNumber = id_number => dispatch => {
-  axios.get(`${BASE_URL}/reservations/filter/${id_number}`).then(response => {
-    dispatch(filterByIdNumberTask(response.data));
+const filterByDate = date => dispatch => {
+  axios.get(`${BASE_URL}/reservations/filter/${date}`).then(response => {
+    dispatch(filterByDateTask(response.data));
   }, console.error);
 };
 
@@ -48,13 +54,19 @@ const setShowNewReservationModal = value => dispatch => {
   return dispatch(setShowModalTask(value));
 };
 
+const setShowSpinner = (value = undefined) => dispatch => {
+  return dispatch(setShowSpinnerTask(value));
+};
+
 export {
   GET_ALL_RESERVATIONS,
-  FILTER_BY_ID_NUMBER,
+  FILTER_BY_DATE,
   CREATE_RESERVATION,
   SHOW_NEW_RESERVATION_MODAL,
+  SHOW_SPINNER,
   getAllReservations,
-  filterByIdNumber,
+  filterByDate,
   createReservation,
   setShowNewReservationModal,
+  setShowSpinner,
 };
