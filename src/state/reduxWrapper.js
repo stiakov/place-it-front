@@ -10,7 +10,7 @@ import rootReducer from '.';
 
 const initState = {
   movies: {
-    all: [],
+    all: undefined,
     showModalNew: false,
   },
   reservations: {
