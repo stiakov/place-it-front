@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import React, { useState, useEffect, memo } from 'react';
+import { connect } from 'react-redux';
 import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
 import Modalizer from '../Modalizer';
@@ -69,15 +69,22 @@ const buttonStyle = css`
   }
 `;
 
-const MovieCard = ({ id, title, plot, poster, projections, showModal }) => {
+const MovieCard = ({
+  id,
+  title,
+  plot,
+  poster,
+  projections,
+  showModal,
+  dispatch,
+}) => {
   const [showMe, setShowMe] = useState(false);
-  const dispatch = useDispatch();
-
+  console.log(showMe, title);
   const handleClick = e => {
     e.preventDefault();
     e.stopPropagation();
-    setShowMe(showModal);
     dispatch(setShowNewReservationModal(true));
+    setTimeout(() => setShowMe(true), 10);
   };
 
   useEffect(() => {
