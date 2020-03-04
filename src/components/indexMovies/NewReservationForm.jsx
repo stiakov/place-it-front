@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 import Loading from '../Loading';
 import {
@@ -12,8 +12,7 @@ import {
   blockStyles,
 } from '../sharedStyles';
 
-const NewReservationForm = ({ movie }) => {
-  const dispatch = useDispatch();
+const NewReservationForm = ({ movie, dispatch }) => {
   const [showSpinner, setShowSpinner] = useState(false);
 
   const submitCreation = data => {
