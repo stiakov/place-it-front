@@ -79,7 +79,6 @@ const MovieCard = ({
   dispatch,
 }) => {
   const [showMe, setShowMe] = useState(false);
-  console.log(showMe, title);
   const handleClick = e => {
     e.preventDefault();
     e.stopPropagation();
