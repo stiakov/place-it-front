@@ -89,9 +89,7 @@ const MovieCard = ({
 
   useEffect(() => {
     return () => {
-      if (!showModal) {
-        setShowMe(false);
-      }
+      setShowMe(false);
     };
   }, [showModal]);
 
