@@ -37,7 +37,7 @@ This repository hosts the code-base for the main User Interface, developed with 
 Navigate into your new site’s directory and install the dependencies.
 
   ```
-  cd place-it-fr/
+  cd place-it-front/
   npm install
   ```
 
