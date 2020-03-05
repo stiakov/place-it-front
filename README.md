@@ -52,7 +52,7 @@ Start developing
 ### Known Issues 🐛
 * When a user wants to reserve on a movie that is down in the list, the form doesn't show in its right place and the user needs to go to the top of the web app to see this form, sometimes it is not evident.
 
-## ToDo
+## To Do List ✅
 - [ ] Make the Reservation form be responsive and let the final user find in there the sinopsis and a thumbnail with the poster image.
 - [ ] Stylize the option boxes in the Available dates select input.
 - [ ] Make the New Movie form show horizontal in large screens.
