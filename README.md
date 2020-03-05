@@ -1,3 +1,4 @@
+![](https://img.shields.io/badge/NodeJS-10.16.3-green)
 ![](https://img.shields.io/badge/React-16.12.0-blue)
 ![](https://img.shields.io/badge/Redux-4.0.1-green?style=flat-square)
 ![](https://img.shields.io/badge/Beta-0.76-red?style=flat-square)
@@ -25,17 +26,39 @@ This repository hosts the code-base for the main User Interface, developed with 
 ## Back-end
 
 * Ruby on Rails
-* PostgreSQL
+* PostgreSQL 
 
 
 ### Pre-requisites ⚙️
-* NodeJS latest version
+* NodeJS runtime
 
 ### Setup Dependencies 🏗
-* Run `npm install` on the project's root directory.
+
+Navigate into your new site’s directory and install the dependencies.
+
+  ```
+  cd place-it-fr/
+  npm install
+  ```
 
 ### Run the server 🚀
+Start developing
+
 * Run this command: `npm run develop`
+
+### Auto-format 🎨
+* Run this command: `npm run format`
+
+### Known Issues 🐛
+* When a user wants to reserve on a movie that is down in the list, the form doesn't show in its right place and the user needs to go to the top of the web app to see this form, sometimes it is not evident.
+
+## ToDo
+- [ ] Make the Reservation form be responsive and let the final user find in there the sinopsis and a thumbnail with the poster image.
+- [ ] Stylize the option boxes in the Available dates select input.
+- [ ] Make the New Movie form show horizontal in large screens.
+- [ ] Let the user find reservations by ID/DNI.
+- [ ] Add vendor prefixes to some css rules that are not backed in some browsers.
+
 
 ## Author
 
