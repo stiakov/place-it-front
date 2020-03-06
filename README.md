@@ -58,6 +58,7 @@ Start developing
 - [ ] Make the New Movie form show horizontal in large screens.
 - [ ] Let the user find reservations by ID/DNI.
 - [ ] Add vendor prefixes to some css rules that are not backed in some browsers.
+- [ ] Align loading spinners at center.
 
 
 ## Author
